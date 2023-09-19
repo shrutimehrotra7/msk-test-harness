@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.DependsOn;
 import org.springframework.stereotype.Controller;
 
 import com.amazonaws.services.cloudwatch.AmazonCloudWatch;
@@ -104,6 +105,7 @@ public class ProduceToKafka {
     private Properties props;
     private AmazonCloudWatch cwClient;
 
+    @DependsOn("KafkaManager.class")
     @PostConstruct
     void initAndStart() {
         if (startProducer) {
